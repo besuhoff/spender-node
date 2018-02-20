@@ -1,0 +1,63 @@
+{
+  "extends": ["airbnb-base"],
+  "env": {
+    "mocha": true
+  },
+  "globals": {
+    "connection": true,
+    "logConnection": true
+  },
+  "rules": {
+    "func-style": [
+      "error",
+      "expression"
+    ],
+    "func-names": [
+      "error",
+      "as-needed"
+    ],
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": [
+          "const",
+          "let",
+          "var"
+        ],
+        "next": "*"
+      },
+      {
+        "blankLine": "any",
+        "prev": [
+          "const",
+          "let",
+          "var"
+        ],
+        "next": [
+          "const",
+          "let",
+          "var"
+        ]
+      }
+    ],
+    "prefer-destructuring": [
+      "error",
+      {
+        "array": false,
+        "object": true
+      }
+    ],
+    "max-len": [ "error", 120 ],
+    "no-param-reassign": [ "error", { "props": false } ],
+    "class-methods-use-this": ["off"]
+  },
+  "overrides": [
+    {
+      "files": "*.spec.js",
+      "rules": {
+        "no-unused-expressions": "off"
+      }
+    }
+  ]
+}
