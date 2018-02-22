@@ -6,6 +6,7 @@ const Umzug = require('umzug');
 
 const knexFile = require('./knexfile');
 const routes = require('./app/api');
+const plugins = require('./app/plugins');
 const { version: API_VERSION } = require('./package.json');
 
 const main = async function () {
@@ -45,9 +46,6 @@ const main = async function () {
       path: '/',
       handler: () => API_VERSION,
     });
-
-
-    const plugins = [];
 
     plugins.push({
       plugin: laabr,
