@@ -16,7 +16,10 @@ const main = async function () {
     // Create Server
     const server = hapi.server({
       routes: {
-        cors: true,
+        cors: {
+          origin: ['*'],
+          headers: ['content-type', 'x-auth-token'],
+        },
       },
       port,
     });

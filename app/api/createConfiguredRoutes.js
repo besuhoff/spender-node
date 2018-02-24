@@ -26,7 +26,7 @@ const createConfiguredRoutes = (routes, prefix) => {
         routeConfig.validate.headers = Joi.object();
       }
 
-      routeConfig.validate.headers = routeConfig.validate.headers.concat(authorizationHeader);
+      routeConfig.validate.headers = routeConfig.validate.headers.concat(authorizationHeader).unknown();
     }
 
     if (routeConfig.validate) {
