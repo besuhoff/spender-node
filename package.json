@@ -22,6 +22,7 @@
   "dependencies": {
     "glob": "7.1.2",
     "hapi": "17.2.0",
+    "hapi-swagger": "9.1.1",
     "joi": "13.1.2",
     "knex": "0.14.4",
     "knex-migrate": "1.5.1",
