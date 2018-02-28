@@ -35,6 +35,10 @@ const createConfiguredRoutes = (routes, prefix) => {
       }
     }
 
+    if (!routeConfig.tags) {
+      routeConfig.tags = ['api'];
+    }
+
     return {
       ...route,
       config: routeConfig,

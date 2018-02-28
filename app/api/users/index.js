@@ -4,13 +4,13 @@ module.exports = [
   {
     path: '/',
     method: 'POST',
-    handler: (request) => {
-      const { gapiUserId } = request.auth.credentials;
-      const { name, email } = request.auth.credentials.gapiResponse;
+    handler: ({ auth }) => {
+      const { gapiUserId } = auth.credentials;
+      const { name, email } = auth.credentials.gapiResponse;
 
-      if (request.auth.credentials.user) {
+      if (auth.credentials.user) {
         return User.query()
-          .findById(request.auth.credentials.user.id)
+          .findById(auth.credentials.user.id)
           .update({ name, email });
       }
 
