@@ -7,7 +7,15 @@ module.exports = Model => (
     handler: async ({ query, auth }) => {
       const params = { userId: auth.credentials.user.id, ...query };
 
-      return findQuery(Model).build(params);
+      const results = await findQuery(Model).build(params);
+      let archive = [];
+      const ArchiveModel = Model.archiveTable;
+
+      if (ArchiveModel) {
+        archive = await findQuery(ArchiveModel).build(params);
+      }
+
+      return results.concat(archive.map(item => ({ _isRemoved: true, ...item })));
     },
     config: {
       auth: 'GoogleAuthUser',

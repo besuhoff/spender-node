@@ -3,10 +3,7 @@ const { Model } = require('objection');
 class ArchivableModel extends Model {
   async $beforeDelete(queryContext) {
     await super.$beforeDelete(queryContext);
-    await this.constructor
-      .knex()
-      .table(`${this.constructor.tableName}_archive`)
-      .insert({ ...this, archivedAt: new Date() });
+    await this.constructor.archiveTable.query().insert({ ...this, archivedAt: new Date() });
   }
 
   $beforeInsert() {
@@ -18,6 +15,16 @@ class ArchivableModel extends Model {
 
   $beforeUpdate() {
     this.updatedAt = new Date();
+  }
+
+  static get archiveTable() {
+    const tableName = `${this.tableName}_archive`;
+
+    class Table extends Model {
+      static get tableName() { return tableName; }
+    }
+
+    return Table;
   }
 }
 
