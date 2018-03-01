@@ -15,12 +15,11 @@ module.exports = [
 
       return findQuery(PaymentMethod)
         .build(params)
-        .then(paymentMethods => Promise.all(paymentMethods.map(paymentMethod => Promise.all([
-          paymentMethod,
-          paymentMethod.$relatedQuery('expenses').sum('amount as expenses').first(),
-          paymentMethod.$relatedQuery('incomes').sum('amount as incomes').first(),
-        ])
-          .then(([model, { expenses }, { incomes }]) => ({ ...model, incomes, expenses })))));
+        .select(
+          'payment_method.*',
+          PaymentMethod.relatedQuery('expenses').sum('amount').as('expenses'),
+          PaymentMethod.relatedQuery('incomes').sum('amount').as('incomes'),
+        );
     },
     config: {
       auth: 'GoogleAuthUser',
