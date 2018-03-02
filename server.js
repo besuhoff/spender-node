@@ -8,11 +8,10 @@ const knexFile = require('./knexfile');
 const routes = require('./app/api');
 const plugins = require('./app/plugins');
 const { version: API_VERSION } = require('./package.json');
+const { port, host } = require('./app/config/env');
 
 const main = async function () {
   try {
-    const port = '8090';
-
     // Create Server
     const server = hapi.server({
       routes: {
@@ -21,6 +20,7 @@ const main = async function () {
           headers: ['content-type', 'x-auth-token'],
         },
       },
+      host,
       port,
     });
 
