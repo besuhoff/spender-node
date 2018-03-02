@@ -1,6 +1,5 @@
 const hapi = require('hapi');
 const Knex = require('knex');
-const laabr = require('laabr');
 const { Model } = require('objection');
 const Umzug = require('umzug');
 
@@ -8,7 +7,7 @@ const knexFile = require('./knexfile');
 const routes = require('./app/api');
 const plugins = require('./app/plugins');
 const { version: API_VERSION } = require('./package.json');
-const { port, host } = require('./app/config/env');
+const { port } = require('./app/config/env');
 
 const main = async function () {
   try {
@@ -20,7 +19,6 @@ const main = async function () {
           headers: ['content-type', 'x-auth-token'],
         },
       },
-      host,
       port,
     });
 
@@ -48,15 +46,6 @@ const main = async function () {
       method: 'GET',
       path: '/',
       handler: () => API_VERSION,
-    });
-
-    plugins.push({
-      plugin: laabr,
-      options: {
-        formats: {
-          log: ':time[iso] :level :message',
-        },
-      },
     });
 
     await server.register(plugins);
