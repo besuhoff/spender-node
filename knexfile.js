@@ -27,7 +27,8 @@ const convertToCamelCase = function convertToCamelCase(map) {
 module.exports = {
   client: 'mysql',
   wrapIdentifier: (value, decorated) => decorated(convertToSnakeCase(value)),
-  postProcessResponse: result => ((Array.isArray(result)) ? result.map(row => convertToCamelCase(row)) : convertToCamelCase(result)),
+  postProcessResponse: result => ((Array.isArray(result)) ?
+    result.map(row => convertToCamelCase(row)) : convertToCamelCase(result)),
   useNullAsDefault: true,
   connection: {
     user: 'spender',

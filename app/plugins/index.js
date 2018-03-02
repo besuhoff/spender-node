@@ -4,7 +4,7 @@ const Inert = require('inert');
 const Vision = require('vision');
 const Laabr = require('laabr');
 const { version } = require('../../package');
-const { host } = require('../config/env');
+const { host, scheme } = require('../config/env');
 
 
 module.exports = [
@@ -18,7 +18,8 @@ module.exports = [
         title: 'Spender API',
         version,
       },
-      host
+      host,
+      schemes: [scheme],
     },
   },
   {
@@ -28,5 +29,5 @@ module.exports = [
         log: ':time[iso] :level :message',
       },
     },
-  }
+  },
 ];
