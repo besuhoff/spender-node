@@ -1,5 +1,5 @@
 const IncomeCategory = require('../../models/IncomeCategory');
-const findRoute = require('../../helpers/findQueryByUserRoute')(IncomeCategory);
+const findRoute = require('../../helpers/findQueryByUserRoute')(IncomeCategory, { orderBy: 'name' });
 const createForUserRoute = require('../../helpers/createForUserRoute')(IncomeCategory);
 const patchForUserRoute = require('../../helpers/patchForUserRoute')(IncomeCategory);
 const deleteForUserRoute = require('../../helpers/deleteForUserRoute')(IncomeCategory);

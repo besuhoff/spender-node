@@ -4,7 +4,7 @@ module.exports = (Model, defaultParams = {}) => (
   {
     path: '/',
     method: 'GET',
-    handler: async ({ query }) => findWithArchived({ ...defaultParams, ...query }),
+    handler: ({ query }) => findWithArchived(Model, { ...defaultParams, ...query }),
     config: {
       auth: 'GoogleAuthUser',
     },
