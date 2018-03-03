@@ -2,8 +2,6 @@ const { Model } = require('objection');
 const Joi = require('joi');
 
 const ArchivableModel = require('./ArchivableModel');
-const IncomeCategory = require('./IncomeCategory');
-const PaymentMethod = require('./PaymentMethod');
 
 class Income extends ArchivableModel {
   static get tableName() {
@@ -35,8 +33,8 @@ class Income extends ArchivableModel {
     return Joi.object({
       amount: Joi.number().precision(4).required(),
       comment: Joi.string().max(2048),
-      incomeCategory: IncomeCategory.joiSchema,
-      paymentMethod: PaymentMethod.joiSchema,
+      incomeCategoryId: Joi.number().positive().allow(null),
+      paymentMethodId: Joi.number().positive().allow(null),
 
       id: Joi.number().positive().allow(null),
       userId: Joi.number().positive().allow(null),
