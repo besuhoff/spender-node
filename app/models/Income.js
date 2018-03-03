@@ -33,8 +33,8 @@ class Income extends ArchivableModel {
     return Joi.object({
       amount: Joi.number().precision(4).required(),
       comment: Joi.string().max(2048),
-      incomeCategoryId: Joi.number().positive().allow(null),
-      paymentMethodId: Joi.number().positive().allow(null),
+      incomeCategoryId: Joi.number().positive().required(),
+      paymentMethodId: Joi.number().positive().required(),
 
       id: Joi.number().positive().allow(null),
       userId: Joi.number().positive().allow(null),
