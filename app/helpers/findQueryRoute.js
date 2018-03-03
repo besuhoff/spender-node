@@ -1,20 +1,10 @@
-const findQuery = require('objection-find');
+const findWithArchived = require('./findWithArchived');
 
-module.exports = Model => (
+module.exports = (Model, defaultParams = {}) => (
   {
     path: '/',
     method: 'GET',
-    handler: async ({ query }) => {
-      const results = await findQuery(Model).build(query);
-      let archive = [];
-      const ArchiveModel = Model.archiveTable;
-
-      if (ArchiveModel) {
-        archive = await findQuery(ArchiveModel).build(query);
-      }
-
-      return results.concat(archive.map(item => ({ _isRemoved: true, ...item })));
-    },
+    handler: async ({ query }) => findWithArchived({ ...defaultParams, ...query }),
     config: {
       auth: 'GoogleAuthUser',
     },
