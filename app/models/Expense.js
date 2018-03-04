@@ -41,9 +41,9 @@ class Expense extends ArchivableModel {
     return Joi.object({
       amount: Joi.number().precision(4).required(),
       comment: Joi.string().max(2048),
-      categoryId: Joi.number().positive().required(),
+      categoryId: Joi.number().positive().allow(null).without('targetIncomeId'),
       paymentMethodId: Joi.number().positive().required(),
-      targetIncomeId: Joi.number().positive().allow(null),
+      targetIncomeId: Joi.number().positive().allow(null).without('categoryId'),
 
       id: Joi.number().positive().allow(null),
       userId: Joi.number().positive().allow(null),

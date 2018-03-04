@@ -7,6 +7,8 @@ class ArchivableModel extends Model {
   }
 
   $beforeInsert() {
+    super.$beforeInsert();
+
     if (!this.createdAt) {
       this.createdAt = new Date();
     }
@@ -14,6 +16,8 @@ class ArchivableModel extends Model {
   }
 
   $beforeUpdate() {
+    super.$beforeUpdate();
+
     this.updatedAt = new Date();
   }
 

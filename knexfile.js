@@ -13,6 +13,10 @@ const convertToSnakeCase = function convertToSnakeCase(value) {
 };
 
 const convertToCamelCase = function convertToCamelCase(map) {
+  if (typeof map !== 'object') {
+    return map;
+  }
+
   const result = {};
 
   Object.keys(map).forEach((key) => {
