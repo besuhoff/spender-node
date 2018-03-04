@@ -41,16 +41,17 @@ class Expense extends ArchivableModel {
     return Joi.object({
       amount: Joi.number().precision(4).required(),
       comment: Joi.string().max(2048),
-      categoryId: Joi.number().positive().allow(null).without('targetIncomeId'),
+      categoryId: Joi.number().positive().allow(null),
       paymentMethodId: Joi.number().positive().required(),
-      targetIncomeId: Joi.number().positive().allow(null).without('categoryId'),
+      targetIncomeId: Joi.number().positive().allow(null),
 
       id: Joi.number().positive().allow(null),
       userId: Joi.number().positive().allow(null),
       createdAt: Joi.date().allow(null),
       updatedAt: Joi.date().allow(null),
       _isRemoved: Joi.boolean(),
-    });
+    })
+      .or('categoryId', 'targetIncomeId');
   }
 }
 
