@@ -8,6 +8,9 @@
     "logConnection": true
   },
   "rules": {
+    "newline-per-chained-call": [
+      "off"
+    ],
     "func-style": [
       "error",
       "expression"

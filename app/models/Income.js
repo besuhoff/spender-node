@@ -32,7 +32,7 @@ class Income extends ArchivableModel {
   static get joiSchema() {
     return Joi.object({
       amount: Joi.number().precision(4).required(),
-      comment: Joi.string().max(2048).allow(null),
+      comment: Joi.string().max(2048).allow(null).allow(''),
       incomeCategoryId: Joi.number().positive().allow(null),
       paymentMethodId: Joi.number().positive().required(),
 
