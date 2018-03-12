@@ -8,7 +8,7 @@ module.exports = Model => (
     handler: async ({ params, payload, auth }) => {
       const userId = auth.credentials.user.id;
 
-      const model = await Model.query().updateAndFetchById(params.id, { ...payload, userId });
+      const model = await Model.query().patchAndFetchById(params.id, { ...payload, userId });
 
       if (!model) {
         throw Boom.notFound();
